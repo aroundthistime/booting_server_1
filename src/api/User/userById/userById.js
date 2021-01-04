@@ -1,9 +1,5 @@
-import { prisma } from "../../../../generated/prisma-client"
-
 export default {
-    Query : {
-        userById : async(_, {id}) => {
-            return await prisma.user({id});
-        }
-    }
-}
+  Query: {
+    userById: async (_, { id }, { prisma }) => await prisma.user({ id }),
+  },
+};
