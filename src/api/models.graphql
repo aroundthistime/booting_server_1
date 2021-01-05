@@ -3,6 +3,7 @@ type User {
   username : String!
   email : String!
   name: String!
+  avatar : String
   status : String
   posts : [Post!]!
   comments : [Comment!]!
@@ -10,6 +11,8 @@ type User {
   followings : [User!]!
   chats : [Chat!]!
   loginSecret : String
+  isMe : Boolean
+  isFollowing : Boolean
 }
 
 type Post {
@@ -19,7 +22,9 @@ type Post {
   location : String
   caption : String!
   likes : [Like!]!
+  likeCounts : Int
   comments : [Comment!]!
+  isLiked : Boolean
 }
 
 type Like {

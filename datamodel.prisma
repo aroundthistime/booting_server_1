@@ -3,42 +3,44 @@ type User {
   username : String! @unique
   email : String! @unique
   name: String!
+  avatar : String @default(value : "https://instastatistics.com/images/default_avatar.jpg")
   status : String @default(value : "")
-  posts : [Post!]!
-  comments : [Comment!]!
+  posts : [Post!]! @relation(name : "UserPosts", onDelete : CASCADE)
+  comments : [Comment!]! @relation(name : "UserComments", onDelete : CASCADE)
   followers : [User!]! @relation(name : "FollowRelation")
   followings : [User!]! @relation(name : "FollowRelation")
+  likes : [Like!]! @relation(name : "UserLikes", onDelete : CASCADE)
   chats : [Chat!]!
   loginSecret : String
 }
 
 type Post {
   id: ID! @id
-  user : User!
-  files : [File!]!
+  user : User! @relation(name : "UserPosts")
+  files : [File!]! @relation(name : "PostFiles", onDelete : CASCADE)
   location : String
   caption : String!
-  likes : [Like!]!
-  comments : [Comment!]!
+  likes : [Like!]! @relation(name : "PostLikes", onDelete : CASCADE)
+  comments : [Comment!]! @relation(name : "PostComments", onDelete : CASCADE)
 }
 
 type Like {
   id: ID! @id
-  user : User
-  post : Post
+  user : User @relation(name : "UserLikes")
+  post : Post @relation(name : "PostLikes")
 }
 
 type Comment {
   id: ID! @id
   text : String!
-  user : User!
-  post : Post!
+  user : User! @relation(name : "UserComments")
+  post : Post! @relation(name : "PostComments")
 }
 
 type File {
   id: ID! @id
   url : String!
-  post : Post!
+  post : Post! @relation(name : "PostFiles")
 }
 
 type Chat {
