@@ -12,13 +12,17 @@ export const USER_FRAGMENT = `
     }
 `;
 
+const USER_FRAGMENT_SIMPLE = `
+    id
+    username
+    avatar
+`;
+
 export const COMMENT_FRAGMENT = `
     id
     text
     user{
-        id
-        username
-        avatar
+        ${USER_FRAGMENT_SIMPLE}
     }
 `;
 
@@ -28,9 +32,7 @@ export const POST_FRAGMENT = `
         location
         caption
         user {
-            id
-            username
-            avatar
+            ${USER_FRAGMENT_SIMPLE}
         }
         files{
             url
@@ -42,6 +44,31 @@ export const POST_FRAGMENT = `
         }
         comments{
             ${COMMENT_FRAGMENT}
+        }
+    }
+`;
+
+export const CHAT_FRAGMENT_DETAIL = `
+    fragment ChatPartsDetail on Chat{
+        id
+        participants{
+            ${USER_FRAGMENT_SIMPLE}
+        }
+        messages{
+            id
+            text
+            from{
+                ${USER_FRAGMENT_SIMPLE}
+            }
+        }
+    }
+`;
+
+export const CHAT_FRAGMENT_SIMPLE = `
+    fragment ChatParts on Chat{
+        id
+        participants{
+            ${USER_FRAGMENT_SIMPLE}
         }
     }
 `;

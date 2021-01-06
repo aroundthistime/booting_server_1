@@ -3,7 +3,7 @@ import { isAuthenticated } from '../../../middlewares';
 export default {
   Mutation: {
     editUser: (_, {
-      username, email, name, status,
+      username, email, name, status, avatar,
     }, { request, prisma }) => {
       isAuthenticated(request);
       const { user } = request;
@@ -12,7 +12,7 @@ export default {
           id: user.id,
         },
         data: {
-          username, email, name, status,
+          username, email, name, status, avatar,
         },
       });
     },
