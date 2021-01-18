@@ -11,11 +11,12 @@ export default {
           },
           data: {
             loginSecret: '',
+            isAuthenticated: true,
           },
         });
         return generateToken(user.id);
       }
-      throw Error('Please check your secret key');
+      return '';
     },
   },
 };

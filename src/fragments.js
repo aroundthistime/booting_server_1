@@ -35,6 +35,7 @@ export const POST_FRAGMENT = `
             ${USER_FRAGMENT_SIMPLE}
         }
         files{
+            id
             url
         }
         likes{
@@ -42,6 +43,7 @@ export const POST_FRAGMENT = `
                 username
             }
         }
+        createdAt
         comments{
             ${COMMENT_FRAGMENT}
         }

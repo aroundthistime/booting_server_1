@@ -23,7 +23,7 @@ export const sendMail = (email) => {
 
 export const sendSecretMail = async (address, secret) => {
   const email = {
-    from: 'aroundthistime@prisma.com',
+    from: 'aroundthistime@instaclone.com',
     to: address,
     subject: 'Secret key for Instagram Login 🔒',
     html: `Hello, your secret key is<br><h2>${secret}</h2><br>Copy paste on the web or app to log in`,

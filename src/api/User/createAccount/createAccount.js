@@ -1,15 +1,18 @@
 export default {
   Mutation: {
     createAccount: async (_, {
-      username, email, name, avatar,
+      username, email, name,
     }, { prisma }) => {
-      const user = await prisma.createUser({
-        username,
-        email,
-        name,
-        avatar,
-      });
-      return user;
+      try {
+        await prisma.createUser({
+          username,
+          email,
+          name,
+        });
+        return true;
+      } catch {
+        return false;
+      }
     },
   },
 };

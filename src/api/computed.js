@@ -39,6 +39,7 @@ export default {
         ],
       });
     },
+    commentCounts: ({ comments }) => comments.length,
   },
   Chat: {
     lastMessage: async ({ id }, _, { prisma }) => {

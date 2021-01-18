@@ -13,6 +13,7 @@ type User {
   loginSecret : String
   isMe : Boolean
   isFollowing : Boolean
+  isAuthenticated : Boolean
 }
 
 type Post {
@@ -24,6 +25,7 @@ type Post {
   likes : [Like!]!
   likeCounts : Int
   comments : [Comment!]!
+  commentCounts : Int
   createdAt : String!
   updatedAt : String!
   isLiked : Boolean

@@ -1,3 +1,4 @@
+import { POST_FRAGMENT } from '../../../fragments';
 import { isAuthenticated } from '../../../middlewares';
 
 export default {
@@ -15,7 +16,7 @@ export default {
           },
         },
         orderBy: 'createdAt_DESC',
-      });
+      }).$fragment(POST_FRAGMENT);
     },
   },
 };
