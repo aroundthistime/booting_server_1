@@ -22,6 +22,7 @@ type Post {
   files : [File!]!
   location : String
   caption : String!
+  tags : [Tag!]!
   likes : [Like!]!
   likeCounts : Int
   comments : [Comment!]!
@@ -29,6 +30,11 @@ type Post {
   createdAt : String!
   updatedAt : String!
   isLiked : Boolean
+}
+
+type Tag {
+  id : ID!
+  text : String!
 }
 
 type Like {

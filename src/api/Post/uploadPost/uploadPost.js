@@ -3,9 +3,12 @@ import { isAuthenticated } from '../../../middlewares';
 
 export default {
   Mutation: {
-    uploadPost: async (_, { location, caption, urls }, { request, prisma }) => {
+    uploadPost: async (_, {
+      location, caption, urls, tags = [],
+    }, { request, prisma }) => {
       isAuthenticated(request);
       const { user } = request;
+      console.log(caption, urls, tags);
       const post = await prisma.createPost({
         caption,
         location,
@@ -13,6 +16,9 @@ export default {
           connect: {
             id: user.id,
           },
+        },
+        tags : {
+          set : tags
         },
       });
       urls.forEach(async (url) => {

@@ -18,7 +18,7 @@ const USER_FRAGMENT_SIMPLE = `
     avatar
 `;
 
-export const COMMENT_FRAGMENT = `
+const COMMENT_FRAGMENT_SIMPLE = `
     id
     text
     user{
@@ -26,11 +26,31 @@ export const COMMENT_FRAGMENT = `
     }
 `;
 
+export const COMMENT_FRAGMENT = `
+    fragment CommentParts on Comment{
+        ${COMMENT_FRAGMENT_SIMPLE}
+    }
+`;
+
+export const POST_FRAGMENT_SIMPLE = `
+    fragment PostSimple on Post{
+        id
+        files{
+            id
+            url
+        }
+    }
+`
+
 export const POST_FRAGMENT = `
     fragment Postparts on Post{
         id
         location
         caption
+        tags{
+            id
+            text
+        }
         user {
             ${USER_FRAGMENT_SIMPLE}
         }
@@ -45,7 +65,7 @@ export const POST_FRAGMENT = `
         }
         createdAt
         comments{
-            ${COMMENT_FRAGMENT}
+            ${COMMENT_FRAGMENT_SIMPLE}
         }
     }
 `;

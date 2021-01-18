@@ -1,3 +1,4 @@
+import { COMMENT_FRAGMENT } from '../../../fragments';
 import { isAuthenticated } from '../../../middlewares';
 
 export default {
@@ -13,11 +14,11 @@ export default {
         },
         post: {
           connect: {
-            id: post.id,
+            id: postId,
           },
         },
         text,
-      });
+      }).$fragment(COMMENT_FRAGMENT);
       return comment;
     },
   },

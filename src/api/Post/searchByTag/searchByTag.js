@@ -2,9 +2,11 @@ import {POST_FRAGMENT_SIMPLE} from '../../../fragments';
 
 export default {
   Query: {
-    searchByLocation: (_, { term }, { prisma }) => prisma.posts({
+    searchByTag : (_, { term }, { prisma }) => prisma.posts({
       where: {
-        location_contains: term,
+        tags_some : {
+            text : term
+        }
       },
     }).$fragment(POST_FRAGMENT_SIMPLE),
   },

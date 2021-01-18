@@ -21,10 +21,16 @@ type Post {
   files : [File!]! @relation(name : "PostFiles", onDelete : CASCADE)
   location : String
   caption : String!
+  tags : [Tag!]!
   likes : [Like!]! @relation(name : "PostLikes", onDelete : CASCADE)
   comments : [Comment!]! @relation(name : "PostComments", onDelete : CASCADE)
   createdAt : DateTime! @createdAt
   updatedAt : DateTime! @updatedAt
+}
+
+type Tag {
+  id : ID! @id
+  text : String!
 }
 
 type Like {
