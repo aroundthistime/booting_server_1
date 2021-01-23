@@ -1,7 +1,0 @@
-type Mutation {
-    createAccount(
-        username : String!,
-        email : String!,
-        name : String!
-    ) : Boolean!
-}

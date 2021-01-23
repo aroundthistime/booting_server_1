@@ -1,7 +1,7 @@
 {
-  "name": "instagram_clone",
+  "name": "booting-server",
   "version": "1.0.0",
-  "description": "instagram clone with Express, Prisma, React, React Native",
+  "description": "blind date app for hufs students",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec babel-node src/server.js",

@@ -1,3 +1,0 @@
-type Subscription {
-    newMessage(chatId : String!) : Message
-}

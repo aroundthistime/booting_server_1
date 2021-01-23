@@ -5,7 +5,7 @@ import { authenticateJwt } from './passport';
 import { prisma } from '../generated/prisma-client';
 import './env';
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 const server = new GraphQLServer({
   schema,

@@ -1,57 +1,67 @@
-type User {
-  id: ID! @id
-  username : String! @unique
-  email : String! @unique
-  name: String!
-  avatar : String @default(value : "https://instastatistics.com/images/default_avatar.jpg")
-  status : String @default(value : "")
-  posts : [Post!]! @relation(name : "UserPosts", onDelete : CASCADE)
-  comments : [Comment!]! @relation(name : "UserComments", onDelete : CASCADE)
-  followers : [User!]! @relation(name : "FollowRelation")
-  followings : [User!]! @relation(name : "FollowRelation")
-  likes : [Like!]! @relation(name : "UserLikes", onDelete : CASCADE)
-  chats : [Chat!]!
-  loginSecret : String
-  isAuthenticated : Boolean @default(value : false)
-}
-
-type Post {
-  id: ID! @id
-  user : User! @relation(name : "UserPosts")
-  files : [File!]! @relation(name : "PostFiles", onDelete : CASCADE)
-  location : String
-  caption : String!
-  tags : [Tag!]!
-  likes : [Like!]! @relation(name : "PostLikes", onDelete : CASCADE)
-  comments : [Comment!]! @relation(name : "PostComments", onDelete : CASCADE)
-  createdAt : DateTime! @createdAt
-  updatedAt : DateTime! @updatedAt
-}
-
-type Tag {
+type User{
   id : ID! @id
-  text : String!
+  email : String! @unique
+  name : String!
+  password : String!
+  avatar : String @unique
+  gender : String!
+  age : Int!
+  department : String!
+  height : Int!
+  location : String!
+  mbti : Mbti
+  isSmoker : Boolean
+  drink : [Drink]! @relation(name : "MyDrinkType")
+  finishedMilitary : Boolean @default(value : true)
+  datingType : [Dating!]! @relation(name : "MyDatingType")
+  avoidSameDepartment : Boolean
+  opponentAgeTop : Int
+  opponentAgeBottom : Int
+  oponentHeightTop : Int
+  opponentHeightBottom : Int
+  opponentMbti : [Mbti!]! @scalarList(strategy: RELATION)
+  opponentIsSmoker : Boolean
+  opponentDrink : [Drink!]! @relation(name : "OpponentDrinkType")
+  opponentFinishedMilitary : Int
+  opponentDatingType : [Dating!]! @relation(name : "OpponentDatingType")
+  chats : [Chat!]!
+  isBanned : Boolean @default(value : false)
 }
 
-type Like {
-  id: ID! @id
-  user : User @relation(name : "UserLikes")
-  post : Post @relation(name : "PostLikes")
+enum Mbti {
+  ISTJ
+  ISFJ
+  INFJ
+  INTJ
+  ISTP
+  ISFP
+  INFP
+  INTP
+  ESTP
+  ESFP
+  ENFP
+  ENTP
+  ESTJ
+  ESFJ
+  ENFJ
+  ENTJ
 }
 
-type Comment {
-  id: ID! @id
-  text : String!
-  user : User! @relation(name : "UserComments")
-  post : Post! @relation(name : "PostComments")
-  createdAt : DateTime! @createdAt
-  updatedAt : DateTime! @updatedAt
+type Drink {
+  id : ID! @id
+  frequency : String!
 }
 
-type File {
-  id: ID! @id
-  url : String!
-  post : Post! @relation(name : "PostFiles")
+type Dating {
+  id : ID! @id
+  content : String!
+}
+
+type Response {
+  id : ID! @id
+  from : User! @relation(name : "LikeFrom")
+  to : User! @relation(name : "LikeTo")
+  isLiked : Boolean!
 }
 
 type Chat {
@@ -61,11 +71,12 @@ type Chat {
 }
 
 type Message{
-  id: ID! @id
+  id : ID! @id
   text : String!
   from : User! @relation(name: "From")
   to : User! @relation(name: "To")
-  chat : Chat
+  chat : Chat!
   createdAt : DateTime! @createdAt
   updatedAt : DateTime! @updatedAt
+  isChecked : Boolean @default(value : false)
 }
