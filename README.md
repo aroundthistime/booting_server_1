@@ -1,2 +1,7 @@
-# instagram_clone
-instagram clone with Express, Prisma, React, React Native
+# Booting server
+
+[ ] report User
+[ ] create Chat room
+[ ] get chat rooms
+[ ] get new Message
+[ ] get chat room (go into)

@@ -1,0 +1,26 @@
+type Mutation {
+    setUserSettings(
+        name : String!,
+        avatar : String!,
+        gender : String!,
+        birthYear : Int!,
+        department : String!,
+        height : Int!,
+        location : String!,
+        mbti : Mbti!
+        isSmoker : Boolean!,
+        drink : Drink!,
+        finishedMilitary : Boolean!,
+        datingType : [Dating!]!,
+        avoidSameDepartment : Boolean!,
+        opponentAgeTop : Int!,
+        opponentAgeBottom : Int!,
+        opponentHeightTop : Int!,
+        opponentHeightBottom : Int!,
+        opponentDistacne : Int!,
+        opponentMbti : [Mbti!]!,
+        opponentIsSmoker : Boolean,!
+        opponentDrink : [Drink!]!,
+        opponentFinishedMilitary : Boolean,
+    ) : Boolean!
+}

@@ -1,0 +1,3 @@
+type Mutation {
+    createResponse(id : String!, isLike : Boolean!) : Boolean! 
+}

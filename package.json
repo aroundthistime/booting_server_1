@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aroundthistime/instagram_clone.git"
+    "url": "git+https://github.com/aroundthistime/booting_server_1.git"
   },
   "author": "aroundthistime",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/aroundthistime/instagram_clone/issues"
+    "url": "https://github.com/aroundthistime/booting_server_1/issues"
   },
-  "homepage": "https://github.com/aroundthistime/instagram_clone#readme",
+  "homepage": "https://github.com/aroundthistime/booting_server_1#readme",
   "dependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",

@@ -1,9 +1,9 @@
 type User{
-  id : ID! @id
-  email : String! @unique
+  id : ID!
+  email : String!
   name : String
   password : String!
-  avatar : String @unique
+  avatar : String
   gender : String
   birthYear : Int
   department : String
@@ -12,21 +12,21 @@ type User{
   mbti : Mbti
   isSmoker : Boolean
   drink : Drink
-  finishedMilitary : Boolean @default(value : true)
-  datingType : [Dating!]! @scalarList(strategy: RELATION)
+  finishedMilitary : Boolean
+  datingType : [Dating!]!
   avoidSameDepartment : Boolean
   opponentAgeTop : Int
   opponentAgeBottom : Int
   opponentHeightTop : Int
   opponentHeightBottom : Int
   opponentDistance : Int
-  opponentMbti : [Mbti!]! @scalarList(strategy: RELATION)
+  opponentMbti : [Mbti!]!
   opponentIsSmoker : Boolean
-  opponentDrink : [Drink!]! @scalarList(strategy: RELATION)
+  opponentDrink : [Drink!]!
   opponentFinishedMilitary : Boolean
   chats : [Chat!]!
-  isBanned : Boolean @default(value : false)
-  settingsDone : Boolean @default(value : false)
+  isBanned : Boolean
+  settingsDone : Boolean
 }
 
 enum Mbti {
@@ -64,25 +64,25 @@ enum Dating {
 }
 
 type Response {
-  id : ID! @id
-  from : User! @relation(name : "ResponseFrom")
-  to : User! @relation(name : "ResponseTo")
+  id : ID!
+  from : User!
+  to : User!
   isLike : Boolean!
 }
 
 type Chat {
-  id: ID! @id
+  id: ID!
   participants : [User!]!
   messages : [Message!]!
 }
 
 type Message{
-  id : ID! @id
+  id : ID!
   text : String!
-  from : User! @relation(name: "From")
-  to : User! @relation(name: "To")
+  from : User!
+  to : User!
   chat : Chat!
-  createdAt : DateTime! @createdAt
-  updatedAt : DateTime! @updatedAt
-  isChecked : Boolean @default(value : false)
+  createdAt : String!
+  updatedAt : String!
+  isChecked : Boolean
 }
