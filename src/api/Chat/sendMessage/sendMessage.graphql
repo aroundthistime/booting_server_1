@@ -1,0 +1,3 @@
+type Mutation{
+    sendMessage(chatId : String!, opponentId : String!, text : String!) : Message!
+}

@@ -83,6 +83,5 @@ type Message{
   to : User! @relation(name: "To")
   chat : Chat!
   createdAt : DateTime! @createdAt
-  updatedAt : DateTime! @updatedAt
   isChecked : Boolean @default(value : false)
 }

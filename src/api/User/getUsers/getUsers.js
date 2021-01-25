@@ -28,9 +28,8 @@ const getFinishedMilitary = (myGender, wish) => {
 export default {
   Query: {
     getUsers: async (_, __, { request, prisma }) => {
-      // const { user } = request;
-      // const me = await prisma.user({ id: user.id });
-      const me = await prisma.user({ id: 'ckkb5185uikat0a32q1wpnhom' });
+      const { user } = request;
+      const me = await prisma.user({ id: user.id });
       const users = await prisma.users({
         where: {
           AND: [

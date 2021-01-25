@@ -24,19 +24,11 @@ export default {
       opponentDrink,
       opponentFinishedMilitary,
     }, { request, prisma }) => {
-    //   const { user } = request;
+      const { user } = request;
       try {
-        // await prisma.updateUser({
-        //     data : {
-        //         datingType : {
-
-        //         }
-        //     }
-        // })
         await prisma.updateUser({
           where: {
-            id: 'ckkb7si2rixju0a32xult2ctg',
-            // id : user.id
+            id: user.id,
           },
           data: {
             name,

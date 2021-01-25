@@ -1,57 +1,47 @@
-export const USER_FRAGMENT_DETAILS = `
-    fragment Userparts on User{
+export const CHAT_FRAGMENT = `
+    fragment ChatParts on Chat{
         id
-        name
-        gender
-        avatar
-        birthYear
-        department
-        height
-        location
-        mbti
-        isSmoker
-        drink {
-            frequency
+        participants{
+            id
+            name
+            avatar
+            isBanned
         }
-        finishedMilitary
-        datingType {
-            content
+        messages{
+            id
+            text
+            from{
+                id
+            }
+            createdAt
+            isChecked
         }
-        avoidSameDepartment
-        opponentAgeTop
-        opponentAgeBottom
-        opponentHeightTop
-        opponentHeightBottom
-        opponentMbti
-        opponentIsSmoker
-        opponentDrink{
-            frequency
-        }
-        opponentFinishedMilitary
-        opponentDatingType{
-            content
+
+    }
+`;
+
+export const CHAT_FRAGMENT_SIMPLE = `
+    fragment ChatSimple on Chat{
+        id
+        participants{
+            name
         }
     }
 `;
 
-export const USER_FRAGMENT = `
-    fragment Userparts on User{
+export const MESSAGE_FRAGMENT = `
+    fragment MessageParts on Message{
         id
-        username
-        name
-        avatar
-        status
-        posts {
+        text
+        from{
             id
-            files{
-                url
-            }
-            likes{
-                id
-            }
-            comments{
-                id
-            }
         }
+        to{
+            id
+        }
+        chat{
+            id
+        }
+        createdAt
     }
 `;

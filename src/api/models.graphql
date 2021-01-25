@@ -74,6 +74,7 @@ type Chat {
   id: ID!
   participants : [User!]!
   messages : [Message!]!
+  lastMessage : Message
 }
 
 type Message{
@@ -83,6 +84,5 @@ type Message{
   to : User!
   chat : Chat!
   createdAt : String!
-  updatedAt : String!
   isChecked : Boolean
 }
