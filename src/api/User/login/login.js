@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import { generateToken } from '../../../utils';
 
 export default {
@@ -7,9 +8,11 @@ export default {
         email,
       });
       try {
-        if (user.password === password) {
+        const match = await bcrypt.compareSync(password, user.password);
+        if (match) {
           return generateToken(user.id);
         }
+        return '';
       } catch {
         return '';
       }

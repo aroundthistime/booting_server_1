@@ -2,7 +2,10 @@ import { generateSecret, sendSecretMail } from '../../../utils';
 
 export default {
   Query: {
-    requestSecret: async (_, { email }) => {
+    requestSecret: async (_, { actualSending, email }) => {
+      if (!actualSending) {
+        return -1;
+      }
       const secret = generateSecret();
       try {
         await sendSecretMail(email, secret);
