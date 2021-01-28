@@ -1,7 +1,7 @@
 # Booting server
 
 [X] report User
-[ ] login
+[X] login
 [X] create Chat room
 [X] get chat rooms
 [X] get new Message

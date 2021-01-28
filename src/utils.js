@@ -1,32 +1,37 @@
 import nodemailer from 'nodemailer';
-import mgTransport from 'nodemailer-mailgun-transport';
 import jwt from 'jsonwebtoken';
-import { adjectives, nouns } from './words';
 import './env';
 
 export const generateSecret = () => {
-  const randomAdjIndex = Math.floor(Math.random() * adjectives.length);
-  const randomNounIndex = Math.floor(Math.random() * nouns.length);
-  return `${adjectives[randomAdjIndex]} ${nouns[randomNounIndex]}`;
+  const max = 999999;
+  const min = 111111;
+  const secret = Math.floor(Math.random() * (max - min + 1)) + min;
+  return secret;
 };
 
-export const sendMail = (email) => {
+export const sendMail = async (email) => {
   const options = {
+    service: 'Naver',
+    host: 'stmp.naver.com',
+    port: 587,
     auth: {
-      api_key: process.env.MAILGUN_API,
-      domain: process.env.MAILGUN_DOMAIN,
+      user: process.env.MAIL_ID,
+      pass: process.env.MAIL_PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false,
     },
   };
-  const client = nodemailer.createTransport(mgTransport(options));
+  const client = nodemailer.createTransport(options);
   return client.sendMail(email);
 };
 
 export const sendSecretMail = async (address, secret) => {
   const email = {
-    from: 'aroundthistime@instaclone.com',
+    from: process.env.MAIL_ID,
     to: address,
-    subject: 'Secret key for Instagram Login 🔒',
-    html: `Hello, your secret key is<br><h2>${secret}</h2><br>Copy paste on the web or app to log in`,
+    subject: '[부팅]인증 관련 메일입니다',
+    text: `오른쪽 숫자 6자리를 입력해주세요 : ${secret}`,
   };
   return sendMail(email);
 };
