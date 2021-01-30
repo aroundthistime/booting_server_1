@@ -4,6 +4,7 @@ import schema from './schema';
 import { authenticateJwt } from './passport';
 import { prisma } from '../generated/prisma-client';
 import './env';
+import { uploadMiddleware, uploadController } from './upload';
 
 const PORT = process.env.PORT || 5000;
 
@@ -14,5 +15,6 @@ const server = new GraphQLServer({
 
 server.express.use(logger('dev'));
 server.express.use(authenticateJwt);
+server.express.post('/api/upload', uploadMiddleware, uploadController);
 
 server.start({ port: PORT }, () => console.log(`✅ Server running on http://localhost:${PORT}`));

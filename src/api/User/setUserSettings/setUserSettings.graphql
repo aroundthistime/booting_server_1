@@ -5,8 +5,7 @@ type Mutation {
         gender : String!,
         birthYear : Int!,
         department : String!,
-        height : Int!,
-        location : String!,
+        height : Float!,
         mbti : Mbti!
         isSmoker : Boolean!,
         drink : Drink!,
@@ -15,11 +14,10 @@ type Mutation {
         avoidSameDepartment : Boolean!,
         opponentAgeTop : Int!,
         opponentAgeBottom : Int!,
-        opponentHeightTop : Int!,
-        opponentHeightBottom : Int!,
-        opponentDistacne : Int!,
+        opponentHeightTop : Float!,
+        opponentHeightBottom : Float!,
         opponentMbti : [Mbti!]!,
-        opponentIsSmoker : Boolean,!
+        opponentIsSmoker : Boolean,
         opponentDrink : [Drink!]!,
         opponentFinishedMilitary : Boolean,
     ) : Boolean!

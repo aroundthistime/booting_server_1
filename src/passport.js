@@ -6,10 +6,12 @@ import './env';
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.JWT_SECRET,
+  session: true,
 };
 
 const verifyUser = async (payload, done) => {
   try {
+    console.log(payload);
     const user = await prisma.user({ id: payload.id });
     if (user) {
       return done(null, user);
@@ -29,3 +31,4 @@ export const authenticateJwt = (req, res, next) => passport.authenticate('jwt', 
 
 passport.use(new Strategy(jwtOptions, verifyUser));
 passport.initialize();
+passport.session();

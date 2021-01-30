@@ -1,5 +1,3 @@
-import checkIsBanned from '../checkIsBanned/checkIsBanned';
-
 const getAvoidDepartmentList = (department, avoid) => {
   if (avoid) {
     return [department];
@@ -8,7 +6,7 @@ const getAvoidDepartmentList = (department, avoid) => {
 };
 
 const getFinishedMilitary = (myGender, wish) => {
-  if (myGender === '남자' || wish === null) {
+  if (myGender === '남' || wish === null) {
     return ({
       OR: [
         {
@@ -79,7 +77,7 @@ export default {
         },
       });
       // return users.filter(() => true); 나중에 위치기준 filter하기
-      const filteredUsers = users.filter(async (user) => {
+      const filteredUsers = users.filter(async (userObj) => {
         const alreadyChecked = await prisma.$exists.response({
           AND: [
             {
@@ -89,7 +87,7 @@ export default {
             },
             {
               to: {
-                id: user.id,
+                id: userObj.id,
               },
             },
           ],

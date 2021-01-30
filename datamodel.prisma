@@ -7,8 +7,7 @@ type User{
   gender : String
   birthYear : Int
   department : String
-  height : Int
-  location : String
+  height : Float
   mbti : Mbti
   isSmoker : Boolean
   drink : Drink
@@ -17,9 +16,8 @@ type User{
   avoidSameDepartment : Boolean
   opponentAgeTop : Int
   opponentAgeBottom : Int
-  opponentHeightTop : Int
-  opponentHeightBottom : Int
-  opponentDistance : Int
+  opponentHeightTop : Float
+  opponentHeightBottom : Float
   opponentMbti : [Mbti!]! @scalarList(strategy: RELATION)
   opponentIsSmoker : Boolean
   opponentDrink : [Drink!]! @scalarList(strategy: RELATION)
@@ -61,6 +59,8 @@ enum Dating {
   GAMES
   TRAVEL
   EATING
+  COOKING
+  DRINKING
 }
 
 type Response {
