@@ -21,6 +21,7 @@ export default {
       opponentIsSmoker,
       opponentDrink,
       opponentFinishedMilitary,
+      isDeactivated,
     }, { request, prisma }) => {
       const { user } = request;
       try {
@@ -56,6 +57,7 @@ export default {
             },
             opponentFinishedMilitary,
             settingsDone: true,
+            isDeactivated,
           },
         });
         return true;

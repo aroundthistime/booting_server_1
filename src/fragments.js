@@ -6,6 +6,7 @@ export const CHAT_FRAGMENT = `
             name
             avatar
             isBanned
+            isDeactivated
         }
         messages{
             id
@@ -24,7 +25,19 @@ export const CHAT_FRAGMENT_SIMPLE = `
     fragment ChatSimple on Chat{
         id
         participants{
+            id
             name
+            avatar
+        }
+        createdAt
+        updatedAt
+    }
+`;
+
+export const CHAT_FRAGMENT_PARTICIPANTS = `
+    fragment ChatParticipants on Chat{
+        participants{
+            id
         }
     }
 `;

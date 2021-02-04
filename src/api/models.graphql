@@ -25,6 +25,7 @@ type User{
   chats : [Chat!]!
   isBanned : Boolean
   settingsDone : Boolean
+  isDeactivated : Boolean
 }
 
 enum Mbti {
@@ -70,11 +71,20 @@ type Response {
   isLike : Boolean!
 }
 
+type Report {
+  id : ID!
+  from : User!
+  to : User!
+  reason : String!
+}
+
 type Chat {
   id: ID!
   participants : [User!]!
   messages : [Message!]!
   lastMessage : Message
+  createdAt : String!
+  updatedAt : String!
 }
 
 type Message{
@@ -84,5 +94,6 @@ type Message{
   to : User!
   chat : Chat!
   createdAt : String!
+  updatedAt : String!
   isChecked : Boolean
 }

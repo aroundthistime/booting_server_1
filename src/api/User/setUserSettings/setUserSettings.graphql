@@ -20,5 +20,6 @@ type Mutation {
         opponentIsSmoker : Boolean,
         opponentDrink : [Drink!]!,
         opponentFinishedMilitary : Boolean,
+        isDeactivated : Boolean!
     ) : Boolean!
 }

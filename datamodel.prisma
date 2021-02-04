@@ -3,7 +3,7 @@ type User{
   email : String! @unique
   name : String
   password : String!
-  avatar : String @unique
+  avatar : String
   gender : String
   birthYear : Int
   department : String
@@ -25,6 +25,7 @@ type User{
   chats : [Chat!]!
   isBanned : Boolean @default(value : false)
   settingsDone : Boolean @default(value : false)
+  isDeactivated : Boolean @default(value : false)
 }
 
 enum Mbti {
@@ -70,10 +71,19 @@ type Response {
   isLike : Boolean!
 }
 
+type Report {
+  id : ID! @id
+  from : User! @relation(name : "ReportFrom")
+  to : User! @relation(name : "ReportTo")
+  reason : String!
+}
+
 type Chat {
   id: ID! @id
   participants : [User!]!
   messages : [Message!]!
+  createdAt : DateTime! @createdAt
+  updatedAt : DateTime! @updatedAt
 }
 
 type Message{
@@ -83,5 +93,6 @@ type Message{
   to : User! @relation(name: "To")
   chat : Chat!
   createdAt : DateTime! @createdAt
+  updatedAt : DateTime! @updatedAt
   isChecked : Boolean @default(value : false)
 }

@@ -17,4 +17,9 @@ server.express.use(logger('dev'));
 server.express.use(authenticateJwt);
 server.express.post('/api/upload', uploadMiddleware, uploadController);
 
-server.start({ port: PORT }, () => console.log(`✅ Server running on http://localhost:${PORT}`));
+const options = {
+  port: PORT,
+  bodyParserOptions: { limit: '10mb', type: 'application/json' },
+};
+
+server.start(options, () => console.log(`✅ Server running on http://localhost:${PORT}`));

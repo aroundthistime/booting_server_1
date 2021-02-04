@@ -1,16 +1,21 @@
-import { CHAT_FRAGMENT } from '../../../fragments';
+import { CHAT_FRAGMENT_SIMPLE } from '../../../fragments';
 
 export default {
   Query: {
     getChats: (_, __, { request, prisma }) => {
-      const { user } = request;
-      return prisma.chats({
-        where: {
-          participants_some: {
-            id: user.id,
+      try {
+        const { user } = request;
+        return prisma.chats({
+          where: {
+            participants_some: {
+              id: user.id,
+            },
           },
-        },
-      }).$fragment(CHAT_FRAGMENT);
+          orderBy: 'updatedAt_DESC',
+        }).$fragment(CHAT_FRAGMENT_SIMPLE);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };

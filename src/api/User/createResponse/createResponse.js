@@ -3,6 +3,7 @@ export default {
     createResponse: async (_, { id, isLike }, { prisma, request }) => {
       try {
         const { user } = request;
+        console.log('CRETING REASPONSE');
         if (user.id === id) {
           return false;
         }
@@ -54,7 +55,20 @@ export default {
               },
             ],
           });
-          if (opponentLikesMe) {
+          const opponent = await prisma.user({ id });
+          if (opponentLikesMe && opponent && !opponent.isBanned && !opponent.isDeactivated) {
+            await prisma.createChat({
+              participants: {
+                connect: [
+                  {
+                    id: user.id,
+                  },
+                  {
+                    id,
+                  },
+                ],
+              },
+            });
             return true;
           }
         }
