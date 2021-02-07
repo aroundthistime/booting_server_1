@@ -4,7 +4,10 @@ export default {
   Query: {
     getChats: (_, __, { request, prisma }) => {
       try {
-        const { user } = request;
+        // const { user } = request;
+        const user = {
+          id: 'ckkh2i4bksl1o0928o5xjhff8',
+        };
         return prisma.chats({
           where: {
             participants_some: {

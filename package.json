@@ -25,6 +25,7 @@
     "@babel/node": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "aws-sdk": "^2.834.0",
+    "axios": "^0.21.1",
     "babel-cli": "^6.26.0",
     "babel-node": "0.0.1-security",
     "bcrypt": "^5.0.0",

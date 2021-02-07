@@ -26,6 +26,7 @@ type User{
   isBanned : Boolean
   settingsDone : Boolean
   isDeactivated : Boolean
+  token : String
 }
 
 enum Mbti {

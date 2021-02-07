@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default {
   Mutation: {
     createResponse: async (_, { id, isLike }, { prisma, request }) => {
@@ -57,6 +59,16 @@ export default {
           });
           const opponent = await prisma.user({ id });
           if (opponentLikesMe && opponent && !opponent.isBanned && !opponent.isDeactivated) {
+            axios.post('https://exp.host/--/api/v2/push/send', {
+              to: opponent.token,
+              title: `${user.name}님과 매칭되었습니다❤`,
+              body: '메시지를 보내 대화를 시작하세요!',
+            });
+            axios.post('https://exp.host/--/api/v2/push/send', {
+              to: user.token,
+              title: `${opponent.name}님과 매칭되었습니다❤`,
+              body: '메시지를 보내 대화를 시작하세요!',
+            });
             await prisma.createChat({
               participants: {
                 connect: [

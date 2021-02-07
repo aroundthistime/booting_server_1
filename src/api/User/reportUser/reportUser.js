@@ -1,6 +1,6 @@
 export default {
   Mutation: {
-    reportUser: async (_, { id, reason }, { request, prisma }) => {
+    reportUser: async (_, { id, chatId, reason }, { request, prisma }) => {
       try {
         const { user } = request;
         await prisma.createReport({
@@ -16,32 +16,18 @@ export default {
           },
           reason,
         });
-        const chatRooms = await prisma.chats({
-          where: {
-            AND: [
-              {
-                participants_some: {
-                  id,
-                },
-              },
-              {
-                participants_some: {
-                  id: user.id,
-                },
-              },
-            ],
-          },
-        });
-        chatRooms.forEach(async (chat) => {
+        if (chatId) {
           await prisma.updateChat({
             where: {
-              id: chat.id,
+              id: chatId,
             },
             data: {
-              isExpired: true,
+              participants: {
+                disconnect: { id: user.id },
+              },
             },
           });
-        });
+        }
         return true;
       } catch {
         return false;

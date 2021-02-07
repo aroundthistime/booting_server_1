@@ -11,4 +11,5 @@ const schema = makeExecutableSchema({
   resolvers: mergeResolvers(allResolvers),
 });
 
+
 export default schema;

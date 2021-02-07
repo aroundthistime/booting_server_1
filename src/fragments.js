@@ -31,6 +31,14 @@ export const CHAT_FRAGMENT_SIMPLE = `
         }
         createdAt
         updatedAt
+        messages{
+            text
+            from{
+                id
+            }
+            isChecked
+            createdAt
+        }
     }
 `;
 
@@ -50,9 +58,6 @@ export const MESSAGE_FRAGMENT = `
             id
         }
         to{
-            id
-        }
-        chat{
             id
         }
         createdAt
