@@ -1,4 +1,4 @@
-import { MESSAGE_FRAGMENT } from '../../../fragments';
+import { MESSAGE_FRAGMENT_WITH_CHAT } from '../../../fragments';
 
 export default {
   Subscription: {
@@ -19,7 +19,7 @@ export default {
             },
           },
         ],
-      }).node().$fragment(MESSAGE_FRAGMENT),
+      }).node().$fragment(MESSAGE_FRAGMENT_WITH_CHAT),
       resolve: (payload) => payload,
     },
   },

@@ -61,5 +61,23 @@ export const MESSAGE_FRAGMENT = `
             id
         }
         createdAt
+        isChecked
+    }
+`;
+
+export const MESSAGE_FRAGMENT_WITH_CHAT = `
+    fragment MessageWithChat on Message{
+        id
+        text
+        from{
+            id
+        }
+        to{
+            id
+        }
+        chat{
+            id
+        }
+        createdAt
     }
 `;

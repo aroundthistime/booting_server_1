@@ -24,13 +24,11 @@ const upload = multer({
 export const uploadMiddleware = upload.single('file');
 
 export const uploadController = (req, res) => {
-  console.log(req.file);
   const { file: { location, originalname } } = req;
   try {
     if (originalname) {
       const nameSplit = originalname.split('/');
       const prevFileKey = nameSplit[nameSplit.length - 1];
-      console.log(prevFileKey);
       s3.deleteObject({
         Bucket: 'booting-bucket',
         Key: prevFileKey,

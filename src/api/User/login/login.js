@@ -8,7 +8,7 @@ export default {
         email,
       });
       try {
-        const match = await bcrypt.compareSync(password, user.password);
+        const match = bcrypt.compareSync(password, user.password);
         if (match) {
           return generateToken(user.id);
         }

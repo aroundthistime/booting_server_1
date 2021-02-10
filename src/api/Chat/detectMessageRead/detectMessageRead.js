@@ -1,3 +1,5 @@
+import { MESSAGE_FRAGMENT } from '../../../fragments';
+
 export default {
   Subscription: {
     detectMessageRead: {
@@ -12,7 +14,7 @@ export default {
             },
           },
         ],
-      }).node(),
+      }).node().$fragment(MESSAGE_FRAGMENT),
       resolve: (payload) => payload,
     },
   },

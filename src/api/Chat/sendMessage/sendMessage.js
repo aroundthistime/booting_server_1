@@ -6,11 +6,13 @@ export default {
       const { user } = request;
       const opponent = await prisma.user({ id: opponentId });
       try {
-        axios.post('https://exp.host/--/api/v2/push/send', {
-          to: opponent.token,
-          title: `${user.name}님으로부터 메시지가 도착했습니다`,
-          body: text,
-        });
+        if (opponent.token) {
+          axios.post('https://exp.host/--/api/v2/push/send', {
+            to: opponent.token,
+            title: `${user.name}님으로부터 메시지가 도착했습니다`,
+            body: text,
+          });
+        }
         return prisma.createMessage({
           text,
           from: {

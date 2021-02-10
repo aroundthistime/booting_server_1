@@ -1,16 +1,16 @@
 export default {
   Mutation: {
-    setUserToken: async (_, { token }, { request, prisma }) => {
+    activateUser: async (_, __, { request, prisma }) => {
+      const { user } = request;
       try {
-        const { user } = request;
         await prisma.updateUser({
           where: { id: user.id },
           data: {
-            token,
+            isDeactivated: false,
           },
         });
         return true;
-      } catch (error) {
+      } catch {
         return false;
       }
     },
