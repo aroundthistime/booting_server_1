@@ -1,20 +1,22 @@
-import { MESSAGE_FRAGMENT } from '../../../fragments';
+import { READ_FRAGMENT } from '../../../fragments';
 
 export default {
   Subscription: {
     detectMessageRead: {
-      subscribe: (_, { chatId }, { prisma }) => prisma.$subscribe.message({
+      subscribe: (_, { chatId }, { prisma }) => prisma.$subscribe.read({
         AND: [
-          { mutation_in: 'UPDATED' },
+          { mutation_in: 'CREATED' },
           {
             node: {
-              chat: {
-                id: chatId,
+              message: {
+                chat: {
+                  id: chatId,
+                },
               },
             },
           },
         ],
-      }).node().$fragment(MESSAGE_FRAGMENT),
+      }).node().$fragment(READ_FRAGMENT),
       resolve: (payload) => payload,
     },
   },

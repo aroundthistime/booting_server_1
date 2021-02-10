@@ -95,5 +95,9 @@ type Message{
   chat : Chat!
   createdAt : DateTime! @createdAt
   updatedAt : DateTime! @updatedAt
-  isChecked : Boolean @default(value : false)
+}
+
+type Read{
+  id : ID! @id
+  message : Message! @relation(name : "MessageRead", onDelete : CASCADE)
 }

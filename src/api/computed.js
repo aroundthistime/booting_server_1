@@ -12,4 +12,7 @@ export default {
       return messages[0];
     },
   },
+  Message: {
+    isChecked: async ({ id }, _, { prisma }) => prisma.$exists.read({ message: { id } }),
+  },
 };

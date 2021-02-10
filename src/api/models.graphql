@@ -98,3 +98,8 @@ type Message{
   updatedAt : String!
   isChecked : Boolean
 }
+
+type Read{
+  id : ID!
+  message : Message!
+}

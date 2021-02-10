@@ -9,12 +9,20 @@ export default {
         // if (message.to.id !== user.id) {
         //   throw Error;
         // }
-        await prisma.updateMessage({
-          where: { id: messageId },
-          data: {
-            isChecked: true,
+        const alreadyRead = await prisma.$exists.read({
+          message: {
+            id: messageId,
           },
         });
+        if (!alreadyRead) {
+          await prisma.createRead({
+            message: {
+              connect: {
+                id: messageId,
+              },
+            },
+          });
+        }
         return true;
       } catch {
         return false;

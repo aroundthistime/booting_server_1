@@ -15,7 +15,6 @@ export const CHAT_FRAGMENT = `
                 id
             }
             createdAt
-            isChecked
         }
 
     }
@@ -36,7 +35,6 @@ export const CHAT_FRAGMENT_SIMPLE = `
             from{
                 id
             }
-            isChecked
             createdAt
         }
     }
@@ -61,7 +59,6 @@ export const MESSAGE_FRAGMENT = `
             id
         }
         createdAt
-        isChecked
     }
 `;
 
@@ -79,5 +76,14 @@ export const MESSAGE_FRAGMENT_WITH_CHAT = `
             id
         }
         createdAt
+    }
+`;
+
+export const READ_FRAGMENT = `
+    fragment ReadParts on Read{
+        id
+        message{
+            id
+        }
     }
 `;
